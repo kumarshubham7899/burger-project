@@ -1,8 +1,19 @@
-import logo from './logo.svg';
+import React, { Component } from 'react';
 import './App.css';
+import HomePage from './views/HomePage';
+import { Provider } from 'react-redux';
+import store from './store/store';
 
-function App() {
-  return <div className="App">Basic React App Setup</div>;
+class App extends Component {
+  render() {
+    return (
+      <Provider store={store}>
+        <div className="App">
+          <HomePage />
+        </div>
+      </Provider>
+    );
+  }
 }
 
 export default App;
