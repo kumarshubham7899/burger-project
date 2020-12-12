@@ -4,8 +4,7 @@ import PropTypes from 'prop-types';
 
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { firstClickHandler } from '../actions/firstAction';
-import { secondClickHandler } from '../actions/secondAction';
+
 const styles = () => ({
   container: {
     height: '100vh',
@@ -23,59 +22,40 @@ const styles = () => ({
   },
 });
 
-class HomePage extends Component {
-  constructor(props) {
-    super(props);
-  }
+class About extends Component {
   clicked = () => {
     const { history } = this.props;
-    history.push('./about');
+    history.push('./');
   };
 
-  positiveClickHandler = () => {
-    const c = this.props.count + 1;
-    this.props.increaseCount(c);
-  };
-
-  negativeClickHandler = () => {
-    const c = this.props.count - 1;
-    this.props.decreaseCount(c);
-  };
   render() {
     const { classes, count } = this.props;
     return (
       <div className={classes.container}>
-        <button onClick={this.positiveClickHandler}>+</button>
         <span className={classes.text} onClick={this.clicked}>
-          This is sample project{count} !!!
+          This is number you left {count} !!!
         </span>
-        <button onClick={this.negativeClickHandler}>-</button>
       </div>
     );
   }
 }
 
-HomePage.defaultProps = {
+About.defaultProps = {
   classes: {},
   count: 0,
 };
 
-HomePage.propTypes = {
+About.propTypes = {
   classes: PropTypes.object,
   count: PropTypes.number,
-  increaseCount: PropTypes.func,
-  decreaseCount: PropTypes.func,
 };
 
 const mapStateToProps = (state) => ({
   count: state.firstReducer.count,
 });
-const mapDispatchToProps = (dispatch) => ({
-  increaseCount: (d) => dispatch(firstClickHandler(d)),
-  decreaseCount: (d) => dispatch(secondClickHandler(d)),
-});
+const mapDispatchToProps = (dispatch) => ({});
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(withStyles(styles)(withRouter(HomePage)));
+)(withStyles(styles)(withRouter(About)));
