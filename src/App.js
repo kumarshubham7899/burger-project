@@ -6,7 +6,8 @@ import { Provider } from 'react-redux';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import store from './store/store';
 
-class App extends Component {
+import Home from './views/Home';
+class Apps extends Component {
   render() {
     return (
       <Provider store={store}>
@@ -23,6 +24,16 @@ class App extends Component {
           </Router>
         </div>
       </Provider>
+    );
+  }
+}
+
+class App extends Component {
+  render() {
+    return (
+      <div>
+        <Home />
+      </div>
     );
   }
 }
